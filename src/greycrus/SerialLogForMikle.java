@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 //import java.util.Scanner;
 
+
 import jssc.SerialPort;
 import jssc.SerialPortList;
 import jssc.SerialPortEvent;
@@ -28,6 +29,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
+
 
 
 import javax.swing.JTabbedPane;
@@ -61,9 +63,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.DefaultComboBoxModel;
 
 
 public class SerialLogForMikle {
@@ -207,6 +209,8 @@ public class SerialLogForMikle {
 	private static JSpinner Chart0Rate,Chart1Rate,Chart2Rate,Chart3Rate,Chart4Rate,Chart5Rate,Chart6Rate,Chart7Rate,Chart8Rate;
 	private static JSpinner Chart9Rate,Chart10Rate,Chart11Rate,Chart12Rate,Chart13Rate,Chart14Rate,Chart15Rate;
 	private static JSpinner[] ChartsRate = new JSpinner[16];
+	private static JComboBox<String> comboBoxSpeed;
+	private static JButton btnClearCharts;
 	
     private static String getComment(String key) {
         for (MyMaches lst : myMaches) {
@@ -271,7 +275,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_0);
 		
 		Chart0Rate = new JSpinner();
-		Chart0Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart0Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart0Rate);
 		
 		chckbxPlacedGraph_0_on_Chart1 = new JCheckBox("On chart 1");
@@ -290,7 +294,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_1);
 		
 		Chart1Rate = new JSpinner();
-		Chart1Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart1Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart1Rate);
 		
 		chckbxPlacedGraph_1_on_Chart1 = new JCheckBox("On chart 1");
@@ -309,7 +313,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_2);
 		
 		Chart2Rate = new JSpinner();
-		Chart2Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart2Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart2Rate);
 		
 		chckbxPlacedGraph_2_on_Chart1 = new JCheckBox("On chart 1");
@@ -328,7 +332,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_3);
 		
 		Chart3Rate = new JSpinner();
-		Chart3Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart3Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart3Rate);
 		
 		chckbxPlacedGraph_3_on_Chart1 = new JCheckBox("On chart 1");
@@ -347,7 +351,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_4);
 		
 		Chart4Rate = new JSpinner();
-		Chart4Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart4Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart4Rate);
 		
 		chckbxPlacedGraph_4_on_Chart1 = new JCheckBox("On chart 1");
@@ -366,7 +370,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_5);
 		
 		Chart5Rate = new JSpinner();
-		Chart5Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart5Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart5Rate);
 		
 		chckbxPlacedGraph_5_on_Chart1 = new JCheckBox("On chart 1");
@@ -385,7 +389,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_6);
 		
 		Chart6Rate = new JSpinner();
-		Chart6Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart6Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart6Rate);
 		
 		chckbxPlacedGraph_6_on_Chart1 = new JCheckBox("On chart 1");
@@ -404,7 +408,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_7);
 		
 		Chart7Rate = new JSpinner();
-		Chart7Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart7Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart7Rate);
 		
 		chckbxPlacedGraph_7_on_Chart1 = new JCheckBox("On chart 1");
@@ -423,7 +427,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_8);
 		
 		Chart8Rate = new JSpinner();
-		Chart8Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart8Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart8Rate);
 		
 		chckbxPlacedGraph_8_on_Chart1 = new JCheckBox("On chart 1");
@@ -442,7 +446,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_9);
 		
 		Chart9Rate = new JSpinner();
-		Chart9Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart9Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart9Rate);
 
 		chckbxPlacedGraph_9_on_Chart1 = new JCheckBox("On chart 1");
@@ -461,7 +465,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_10);
 		
 		Chart10Rate = new JSpinner();
-		Chart10Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart10Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart10Rate);
 
 		chckbxPlacedGraph_10_on_Chart1 = new JCheckBox("On chart 1");
@@ -480,7 +484,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_11);
 		
 		Chart11Rate = new JSpinner();
-		Chart11Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart11Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart11Rate);
 
 		chckbxPlacedGraph_11_on_Chart1 = new JCheckBox("On chart 1");
@@ -499,7 +503,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_12);
 		
 		Chart12Rate = new JSpinner();
-		Chart12Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart12Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart12Rate);
 
 		chckbxPlacedGraph_12_on_Chart1 = new JCheckBox("On chart 1");
@@ -518,7 +522,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_13);
 		
 		Chart13Rate = new JSpinner();
-		Chart13Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart13Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart13Rate);
 
 		chckbxPlacedGraph_13_on_Chart1 = new JCheckBox("On chart 1");
@@ -537,7 +541,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_14);
 		
 		Chart14Rate = new JSpinner();
-		Chart14Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart14Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart14Rate);
 
 		chckbxPlacedGraph_14_on_Chart1 = new JCheckBox("On chart 1");
@@ -556,7 +560,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_15);
 		
 		Chart15Rate = new JSpinner();
-		Chart15Rate.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		Chart15Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart15Rate);
 
 		chckbxPlacedGraph_15_on_Chart1 = new JCheckBox("On chart 1");
@@ -857,7 +861,7 @@ public class SerialLogForMikle {
 						// Открываем порт
 						serialPort.openPort();
 						// Выставляем параметры
-						serialPort.setParams(SerialPort.BAUDRATE_115200,
+						serialPort.setParams(Integer.parseInt(comboBoxSpeed.getSelectedItem().toString()),
 								SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
 								SerialPort.PARITY_NONE);
 						// Включаем аппаратное управление потоком
@@ -882,6 +886,18 @@ public class SerialLogForMikle {
 			});
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		frame.getContentPane().add(menuBar, BorderLayout.NORTH);
+		
+		btnClearCharts = new JButton("ClearCharts");
+		btnClearCharts.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				for(int n_Chart=0;n_Chart<4;n_Chart++)
+								
+						dataset[n_Chart].clear();
+	
+			}
+		});
+		btnClearCharts.setBackground(Color.MAGENTA);
+		menuBar.add(btnClearCharts);
 		
 		chckbxShowTrash = new JCheckBox("ShowTrash");
 		menuBar.add(chckbxShowTrash);
@@ -925,6 +941,11 @@ public class SerialLogForMikle {
 		comboBoxPort = new JComboBox<String>();
 		comboBoxPort.setMaximumRowCount(15);
 		menuBar.add(comboBoxPort);
+		
+		comboBoxSpeed = new JComboBox<String>();
+		comboBoxSpeed.setModel(new DefaultComboBoxModel<String>(new String[] {"115200","128000","256000", "57600"}));
+		menuBar.add(comboBoxSpeed);
+		comboBoxSpeed.setMaximumRowCount(5);
 		frame.getContentPane().add(tabbedPane);
 		
 		logsArea = new JTextArea();
@@ -1226,7 +1247,7 @@ public class SerialLogForMikle {
 			for (int Numchart = 0; Numchart < 16; Numchart++) {
 				if (null == chartData[Numchart])
 					continue;
-
+				//	dataset[0];
 				for (int i = 0; i < chartData[Numchart].length; i++) {
 					String namechart =getComment("Series" + Numchart);
 					// Теперь не делим на 4 - а указываем куда именно "чартить"
@@ -1236,7 +1257,7 @@ public class SerialLogForMikle {
 					for(int n_Chart=0;n_Chart<4;n_Chart++){
 					if(chckbxPlacedGraphs[Numchart][n_Chart].isSelected()){				
 						dataset[n_Chart].addValue(
-								chartData[Numchart][i]*(Integer)ChartsRate[Numchart].getValue(), namechart, " "
+								chartData[Numchart][i]*(Float)ChartsRate[Numchart].getValue(), namechart, " "
 										+ i);
 						}
 					}
