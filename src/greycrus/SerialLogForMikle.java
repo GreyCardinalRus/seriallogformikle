@@ -211,6 +211,7 @@ public class SerialLogForMikle {
 	private static JSpinner[] ChartsRate = new JSpinner[16];
 	private static JComboBox<String> comboBoxSpeed;
 	private static JButton btnClearCharts;
+	private static JCheckBox checkBoxINT32;
 	
     private static String getComment(String key) {
         for (MyMaches lst : myMaches) {
@@ -275,6 +276,7 @@ public class SerialLogForMikle {
 		panel_Settings.add(lblPlacedGraph_0);
 		
 		Chart0Rate = new JSpinner();
+		Chart0Rate.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		Chart0Rate.setModel(new SpinnerNumberModel(new Float(1), new Float(0), null, new Float(1)));
 		panel_Settings.add(Chart0Rate);
 		
@@ -899,6 +901,10 @@ public class SerialLogForMikle {
 		btnClearCharts.setBackground(Color.MAGENTA);
 		menuBar.add(btnClearCharts);
 		
+		checkBoxINT32 = new JCheckBox("On chart int 32bit");
+		checkBoxINT32.setSelected(true);
+		menuBar.add(checkBoxINT32);
+		
 		chckbxShowTrash = new JCheckBox("ShowTrash");
 		menuBar.add(chckbxShowTrash);
 		
@@ -1058,7 +1064,7 @@ public class SerialLogForMikle {
 
 
         //frame.setTitle("Заголовок"); 
-		frame.setSize(758, 570);
+		frame.setSize(900, 574);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);// 2*Math.PI
 	}
@@ -1271,6 +1277,8 @@ public class SerialLogForMikle {
 																		// '0';
 			try {
 				chartData[numChart] = str2int(fullString2);
+				for(int jj=0;jj< chartData[numChart].length&&checkBoxINT32.isSelected();jj++){
+				if(chartData[numChart][jj]>32768) chartData[numChart][jj]-=65536;}
 				//trashArea
 				//		.append(new String("Set chart " + numChart + " l="
 				//				+ chartData[numChart].length + " " + fullString
