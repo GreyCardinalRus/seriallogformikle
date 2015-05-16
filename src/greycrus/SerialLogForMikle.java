@@ -1049,7 +1049,17 @@ public class SerialLogForMikle {
                                         if(key.equalsIgnoreCase("Series15")){
                                         	lblPlacedGraph_15.setText("Показать \""+comment+ " \" на графиках:"); 
                                         }
-        
+                                        if(key.startsWith("CheckBoxOnCart")){//.equalsIgnoreCase("CheckBoxOnCart[0][0]")){
+                                        	int sir=key.indexOf("[");
+                                        	int eir=key.indexOf("]");
+                                        	
+                                        	int numRow=	Integer.parseUnsignedInt(key.substring(sir+1, eir));
+                                        	sir = key.indexOf("[", eir+1);
+                                        	eir=key.indexOf("]",sir+1);
+                                        	int numCol=	Integer.parseUnsignedInt(key.substring(sir+1, eir))-1;
+                                         	chckbxPlacedGraphs[numRow][numCol].setSelected(true); 
+                                        }
+                                        
                                         myMaches.add(new MyMaches(key, value, comment));
                                 } //else if (line.length() > 5)
                                    //     System.out.println(line);
